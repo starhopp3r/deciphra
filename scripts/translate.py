@@ -98,8 +98,8 @@ def translate_data(data_filepath, xlit_filepath, output_filepath):
         # Reverse the transliterated string for 'sanskrit' field
         df.at[idx, 'sanskrit'] = ''.join(analyzed['str'].split('-')[::-1])
     # Reorganize columns for the output
-    output_df = df[['id', 'text', 'sanskrit', 'translation', 'description']].copy()
-    output_df.columns = ['id', 'text', 'inscription', 'translation', 'canonical']
+    output_df = df[['id', 'text', 'description', 'sanskrit', 'translation']].copy()
+    output_df.columns = ['id', 'text', 'canonical', 'inscription', 'translation']
     output_df.to_csv(output_filepath, index=False)
 
 
