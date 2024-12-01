@@ -15,7 +15,7 @@ def transcribe(string):
 					if transText[len(transText)-1] == "ə":
 						transText = transText[:len(transText)-1]
 				except IndexError:
-					print("Warning: You are attempting to transcribe a stand-alone diacritical mark.\n")
+					print("WARNING: You are attempting to transcribe a stand-alone diacritical mark.\n")
 			else:
 				pass
 		if prevChar == 1:	
