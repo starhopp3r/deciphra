@@ -141,13 +141,18 @@ def transcribe(string):
                 for i in range(len(clusterComponents)): altTransText += clusterComponents[i]
             vowelB = vowelA+length
             lastLength = length
-        altTransText += transText[vowelB-lastLength:]    
-        altTransText = ''.join(altTransText[3:].split('.'))
-        return re.sub('ˈ', '', altTransText)
+        altTransText += transText[vowelB-lastLength:]
+        altTransText = re.sub(r'^.ə', '', altTransText)  
+        altTransText = re.sub('\\.', '', altTransText)
+        altTransText = re.sub('ˈ', '', altTransText)
+        altTransText = re.sub(r'^əə', 'ə', altTransText)
+        return altTransText
     except Exception as e:
-        altTransText = transText[1:]
-        altTransText = ''.join(altTransText.split('.'))
-        return re.sub('ˈ', '', altTransText)
+        altTransText = re.sub(r'^.ə', '', altTransText)  
+        altTransText = re.sub('\\.', '', altTransText)
+        altTransText = re.sub('ˈ', '', altTransText)
+        altTransText = re.sub(r'^əə', 'ə', altTransText)
+        return altTransText
     
 
 def get_next_vowel_index(ipaString, currentIndex):

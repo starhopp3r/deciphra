@@ -23,7 +23,12 @@ def mw_to_iast_ipa(xml_file, output_csv):
         # Inform user of count of unique vocab
         print(f"{len(result_dict)} unique words found in the dictionary")
         df = pd.DataFrame(list(result_dict.items()), columns=['IAST', 'IPA'])
+        # Sort the dataframe alphabetically
+        print("Sorting the dataset by alphabetical order...")
+        df = df.sort_values(by='IAST')
+        # Export the dataframe to a csv
         df.to_csv(output_csv, index=False)
+        print(f"Dataset saved at {output_csv}")
     except FileNotFoundError:
         print(f"File not found: {xml_file}")
     except Exception as e:
